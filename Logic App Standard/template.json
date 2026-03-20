@@ -85,6 +85,13 @@
             },
             "properties": {
                 "name": "[parameters('logicappName')]",
+                "outboundVnetRouting": {
+                    "allTraffic": false,
+                    "applicationTraffic": true,
+                    "contentShareTraffic": true,
+                    "imagePullTraffic": false,
+                    "backupRestoreTraffic": false
+                },
                 "siteConfig": {
                     "appSettings": [
                         {
