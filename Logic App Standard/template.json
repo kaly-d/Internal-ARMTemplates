@@ -5,6 +5,10 @@
         "subscriptionId": {
             "type": "String"
         },
+        "virtualNetworks_VNET_externalid": {
+            "defaultValue": "/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/VNET",
+            "type": "String"
+        },
         "name": {
             "type": "String"
         },
@@ -236,6 +240,25 @@
                 "defaultToOAuthAuthentication": true,
                 "allowBlobPublicAccess": false,
                 "allowSharedKeyAccess": true,
+                "networkAcls": {
+                    "ipv6Rules": [],
+                    "resourceAccessRules": [],
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat(parameters('virtualNetworks_VNET_externalid'), '/subnets/LogicAppOutbound')]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        }
+                    ],
+                    "ipRules": [
+                        {
+                            "value": "52.148.171.5",
+                            "action": "Allow"
+                        }
+                    ],
+                    "defaultAction": "Deny"
+                },
                 "publicNetworkAccess": "Enabled"
             }
         },
