@@ -204,7 +204,7 @@
             "apiVersion": "2020-07-01",
             "name": "[variables('outboundSubnetDeployment')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', 'VNET')]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
             ],
             "properties": {
                 "mode": "Incremental",
@@ -217,7 +217,7 @@
                         {
                             "type": "Microsoft.Network/virtualNetworks/subnets",
                             "apiVersion": "2020-07-01",
-                            "name": "VNET/LogicAppOutbound",
+                            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('subnetName'))]",
                             "properties": {
                                 "delegations": [
                                     {
