@@ -224,47 +224,29 @@
             }
         },
         {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-07-01",
-            "name": "[variables('outboundSubnetDeployment')]",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
             ],
+            "apiVersion": "2020-07-01",
+            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('subnetName'))]",
             "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "parameters": {},
-                    "variables": {},
-                    "resources": [
-                        {
-                            "type": "Microsoft.Network/virtualNetworks/subnets",
-                            "apiVersion": "2020-07-01",
-                            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('subnetName'))]",
-                            "properties": {
-                                "delegations": [
-                                    {
-                                        "name": "delegation",
-                                        "properties": {
-                                            "serviceName": "Microsoft.Web/serverfarms"
-                                        }
-                                    }
-                                ],
-                                "serviceEndpoints": [
-                                    {
-                                        "service": "Microsoft.Storage"
-                                    }
-                                ],
-                                "addressPrefix": "10.0.0.0/24"
-                            }
+                "delegations": [
+                    {
+                        "name": "delegation",
+                        "properties": {
+                            "serviceName": "Microsoft.Web/serverfarms"
                         }
-                    ]
-                }
-            },
-            "subscriptionId": "",
-            "resourceGroup": ""
-        },
+                    }
+                ],
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Storage"
+                    }
+                ],
+                "addressPrefix": "10.0.0.0/24"
+            }
+        }
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2022-05-01",
