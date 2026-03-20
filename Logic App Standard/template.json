@@ -220,33 +220,27 @@
                         "10.0.0.0/16"
                     ]
                 },
-                "subnets": []
+                "subnets": [
+                    "name": "[concat(parameters('virtualNetworkName'), '/', parameters('subnetName'))]",
+                    "properties": {
+                        "delegations": [
+                            {
+                                "name": "delegation",
+                                "properties": {
+                                    "serviceName": "Microsoft.Web/serverfarms"
+                                }
+                            }
+                        ],
+                        "serviceEndpoints": [
+                            {
+                                "service": "Microsoft.Storage"
+                            }
+                        ],
+                        "addressPrefix": "10.0.0.0/24"
+                    }
+                ]
             }
         },
-        {
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
-            ],
-            "apiVersion": "2020-07-01",
-            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('subnetName'))]",
-            "properties": {
-                "delegations": [
-                    {
-                        "name": "delegation",
-                        "properties": {
-                            "serviceName": "Microsoft.Web/serverfarms"
-                        }
-                    }
-                ],
-                "serviceEndpoints": [
-                    {
-                        "service": "Microsoft.Storage"
-                    }
-                ],
-                "addressPrefix": "10.0.0.0/24"
-            }
-        }
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2022-05-01",
