@@ -5,6 +5,9 @@
     "subscriptionId": {
       "type": "String"
     },
+    "resourceGroup": {
+      "type": "String"
+    },
     "subnetName": {
       "defaultValue": "LAOutbound",
       "type": "String"
@@ -326,7 +329,7 @@
         }
       },
       "subscriptionId": "[parameters('subscriptionId')]",
-      "resourceGroup": "KalyaniRG"
+      "resourceGroup": "[parameters('resourceGroup')]"
     }
   ]
 }
