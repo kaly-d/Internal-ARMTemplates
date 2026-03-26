@@ -126,7 +126,7 @@
         "vnetContentShareEnabled": true,
         "vnetRouteAllEnabled": true,
         "httpsOnly": true,
-        "serverFarmId": "[concat('/subscriptions/', subscription().id,'/resourcegroups/', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "serverFarmId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
       },
       "resources": [
         {
