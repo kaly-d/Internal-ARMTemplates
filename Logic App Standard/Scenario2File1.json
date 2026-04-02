@@ -3,122 +3,125 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "natGatewayApiVersion": {
-            "type": "string",
-            "defaultValue": "2024-05-01"
+            "defaultValue": "2024-05-01",
+            "type": "String"
         },
         "publicIpAddressApiVersion": {
-            "type": "string",
-            "defaultValue": "2024-05-01"
+            "defaultValue": "2024-05-01",
+            "type": "String"
         },
         "publicIpPrefixApiVersion": {
-            "type": "string",
-            "defaultValue": "2024-05-01"
+            "defaultValue": "2024-05-01",
+            "type": "String"
         },
         "natGatewayName": {
-            "type": "string"
+            "type": "String"
         },
         "location": {
-            "type": "string"
+            "type": "String"
         },
         "idleTimeout": {
-            "type": "int"
+            "defaultValue": 4,
+            "type": "Int"
         },
         "sku": {
-            "type": "string"
+            "defaultValue": "Standard",
+            "type": "String"
         },
         "zones": {
-            "type": "array"
+            "defaultValue": [],
+            "type": "Array"
         },
         "publicIpAddressesIPv4": {
-            "type": "array",
             "defaultValue": [],
+            "type": "Array",
             "metadata": {
                 "description": "List of new and existing IPV4 public IP addresses to associate with the NAT Gateway. This array should contain objects in the form { id: <resourceId> }."
             }
         },
         "publicIpAddressesIPv6": {
-            "type": "array",
             "defaultValue": [],
+            "type": "Array",
             "metadata": {
                 "description": "List of new and existing IPv6 public IP addresses to associate with the NAT Gateway. This array should contain objects in the form { id: <resourceId> }."
             }
         },
         "publicIpPrefixesIPv4": {
-            "type": "array",
             "defaultValue": [],
+            "type": "Array",
             "metadata": {
                 "description": "List of new and existing IPv4 public IP prefixes to associate with the NAT Gateway. This array should contain objects in the form { id: <resourceId> }."
             }
         },
         "publicIpPrefixesIPv6": {
-            "type": "array",
             "defaultValue": [],
+            "type": "Array",
             "metadata": {
                 "description": "List of new and existing IPv6 public IP prefixes to associate with the NAT Gateway. This array should contain objects in the form { id: <resourceId> }."
             }
         },
         "tags": {
-            "type": "object",
-            "defaultValue": {}
+            "defaultValue": {},
+            "type": "Object"
         },
         "deployNewPublicIp": {
-            "type": "bool",
-            "defaultValue": false
+            "defaultValue": false,
+            "type": "Bool"
         },
         "publicIpName": {
-            "type": "string",
-            "defaultValue": "nat-pip"
+            "defaultValue": "nat-pip",
+            "type": "String"
         },
         "publicIpVersion": {
-            "type": "string",
             "defaultValue": "IPv4",
             "allowedValues": [
                 "IPv4",
                 "IPv6"
-            ]
+            ],
+            "type": "String"
         },
         "deployNewPublicIpPrefix": {
-            "type": "bool",
-            "defaultValue": false
+            "defaultValue": false,
+            "type": "Bool"
         },
         "publicIpPrefixName": {
-            "type": "string",
-            "defaultValue": "nat-prefix"
+            "defaultValue": "nat-prefix",
+            "type": "String"
         },
         "publicIpPrefixLength": {
-            "type": "int",
             "defaultValue": 28,
+            "type": "Int",
             "metadata": {
                 "description": "The prefix length for the new public IP prefix (e.g., 28 for /28)"
             }
         },
         "publicIpPrefixVersion": {
-            "type": "string",
             "defaultValue": "IPv4",
             "allowedValues": [
                 "IPv4",
                 "IPv6"
-            ]
+            ],
+            "type": "String"
         },
         "sourceVirtualNetwork": {
-            "type": "string",
-            "defaultValue": ""
+            "defaultValue": "",
+            "type": "String"
         },
         "virtualNetwork": {
-            "type": "object",
-            "defaultValue": {}
+            "defaultValue": {"name":"vnet","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet","type":"Microsoft.Network/virtualNetworks","location":"canadacentral","properties":{"provisioningState":"Succeeded","resourceGuid":"6edcd27a-7459-455f-948b-b80993dcb19a","addressSpace":{"addressPrefixes":["10.0.0.0/16"]},"privateEndpointVNetPolicies":"Disabled","subnets":[{"name":"subnet","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet","etag":"W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"","properties":{"provisioningState":"Succeeded","addressPrefix":"10.0.0.0/24","serviceAssociationLinks":[{"name":"AppServiceLink","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet/serviceAssociationLinks/AppServiceLink","etag":"W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"","type":"Microsoft.Network/virtualNetworks/subnets/serviceAssociationLinks","properties":{"provisioningState":"Succeeded","linkedResourceType":"Microsoft.Web/serverfarms","link":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Web/serverfarms/testkalyasp","enabledForArmDeployments":false,"allowDelete":false,"subnetId":"00000000-0000-0000-0000-000000000000","locations":[]}}],"serviceEndpoints":[{"provisioningState":"Succeeded","service":"Microsoft.Storage","locations":["canadacentral","canadaeast"]}],"delegations":[{"name":"delegation","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet/delegations/delegation","etag":"W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"","properties":{"provisioningState":"Succeeded","serviceName":"Microsoft.Web/serverfarms","actions":["Microsoft.Network/virtualNetworks/subnets/action"]},"type":"Microsoft.Network/virtualNetworks/subnets/delegations"}],"privateEndpointNetworkPolicies":"Disabled","privateLinkServiceNetworkPolicies":"Enabled","natGateway":{"id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/natGateways/natgw"}},"type":"Microsoft.Network/virtualNetworks/subnets"}],"virtualNetworkPeerings":[],"enableDdosProtection":false},"apiVersion":"2024-10-01"},
+            "type": "Object"
         },
         "virtualNetworkResourceGroup": {
-            "type": "string",
-            "defaultValue": ""
+            "defaultValue": "",
+            "type": "String"
         },
         "publicIpAddressServiceTag": {
-            "type": "array",
-            "defaultValue": []
+            "defaultValue": [],
+            "type": "Array"
         },
         "publicIpPrefixServiceTag": {
-            "type": "array",
-            "defaultValue": []
+            "defaultValue": [],
+            "type": "Array"
         }
     },
     "variables": {
@@ -126,7 +129,6 @@
     },
     "resources": [
         {
-            "condition": "[parameters('deployNewPublicIp')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "[parameters('publicIpAddressApiVersion')]",
             "name": "[parameters('publicIpName')]",
@@ -139,10 +141,10 @@
                 "publicIPAllocationMethod": "Static",
                 "publicIpAddressVersion": "[parameters('publicIpVersion')]",
                 "ipTags": "[parameters('publicIpAddressServiceTag')]"
-            }
+            },
+            "condition": "[parameters('deployNewPublicIp')]"
         },
         {
-            "condition": "[parameters('deployNewPublicIpPrefix')]",
             "type": "Microsoft.Network/publicIPPrefixes",
             "apiVersion": "[parameters('publicIpPrefixApiVersion')]",
             "name": "[parameters('publicIpPrefixName')]",
@@ -156,18 +158,23 @@
                 "prefixLength": "[parameters('publicIpPrefixLength')]",
                 "publicIpAddressVersion": "[parameters('publicIpPrefixVersion')]",
                 "ipTags": "[parameters('publicIpPrefixServiceTag')]"
-            }
+            },
+            "condition": "[parameters('deployNewPublicIpPrefix')]"
         },
         {
-            "apiVersion": "[parameters('natGatewayApiVersion')]",
             "type": "Microsoft.Network/natGateways",
+            "apiVersion": "[parameters('natGatewayApiVersion')]",
             "name": "[parameters('natGatewayName')]",
             "location": "[parameters('location')]",
-            "zones": "[parameters('zones')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]",
+                "[resourceId('Microsoft.Network/publicIPPrefixes', parameters('publicIpPrefixName'))]"
+            ],
+            "tags": "[parameters('tags')]",
             "sku": {
                 "name": "[parameters('sku')]"
             },
-            "tags": "[parameters('tags')]",
+            "zones": "[parameters('zones')]",
             "properties": {
                 "publicIPAddresses": "[parameters('publicIpAddressesIPv4')]",
                 "publicIPAddressesV6": "[parameters('publicIpAddressesIPv6')]",
@@ -175,18 +182,12 @@
                 "publicIPPrefixesV6": "[parameters('publicIpPrefixesIPv6')]",
                 "idleTimeoutInMinutes": "[parameters('idleTimeout')]",
                 "sourceVirtualNetwork": "[variables('sourceVirtualNetworkObject')]"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]",
-                "[resourceId('Microsoft.Network/publicIPPrefixes', parameters('publicIpPrefixName'))]"
-            ]
+            }
         },
         {
-            "condition": "[not(empty(parameters('virtualNetwork')))]",
-            "apiVersion": "2017-05-10",
             "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
             "name": "VnetAssociation",
-            "resourceGroup": "[parameters('virtualNetworkResourceGroup')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/natGateways/', parameters('natGatewayName'))]"
             ],
@@ -197,7 +198,9 @@
                     "contentVersion": "1.0.0.0",
                     "resources": "[array(parameters('virtualNetwork'))]"
                 }
-            }
+            },
+            "resourceGroup": "[parameters('virtualNetworkResourceGroup')]",
+            "condition": "[not(empty(parameters('virtualNetwork')))]"
         }
     ]
 }
