@@ -363,7 +363,7 @@
             "properties": {
                 "prefixLength": 28,
                 "publicIpAddressVersion": "IPv4",
-                "ipTags": []"
+                "ipTags": []
             },
             "condition": false
         },
@@ -383,7 +383,7 @@
             "zones": [],
             "properties": {
                 "publicIPAddresses": [],
-                "publicIPAddressesV6": []",
+                "publicIPAddressesV6": [],
                 "publicIPPrefixes": [],
                 "publicIPPrefixesV6": [],
                 "idleTimeoutInMinutes": 4,
