@@ -17,7 +17,7 @@
         "location": "canadacentral",
         "properties": {
           "provisioningState": "Succeeded",
-          "resourceGuid": "6edcd27a-7459-455f-948b-b80993dcb19a",
+          "resourceGuid": "[resourceGuid('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
           "addressSpace": {
             "addressPrefixes": [
               "10.0.0.0/16"
