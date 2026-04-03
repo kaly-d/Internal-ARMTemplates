@@ -1,23 +1,100 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "natGatewayName": {
-            "type": "String"
+  "$schema": "https://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "natGatewayName": {
+      "type": "String"
+    },
+    "sourceVirtualNetwork": {
+      "defaultValue": "",
+      "type": "String"
+    },
+    "virtualNetwork": {
+      "defaultValue": {
+        "name": "vnet",
+        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "type": "Microsoft.Network/virtualNetworks",
+        "location": "canadacentral",
+        "properties": {
+          "provisioningState": "Succeeded",
+          "resourceGuid": "6edcd27a-7459-455f-948b-b80993dcb19a",
+          "addressSpace": {
+            "addressPrefixes": [
+              "10.0.0.0/16"
+            ]
+          },
+          "privateEndpointVNetPolicies": "Disabled",
+          "subnets": [
+            {
+              "name": "subnet",
+              "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetName'))]",
+              "etag": "W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"",
+              "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24",
+                "serviceAssociationLinks": [
+                  {
+                    "name": "AppServiceLink",
+                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetName'), '/serviceAssociationLinks/AppServiceLink'))]",
+                    "etag": "W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"",
+                    "type": "Microsoft.Network/virtualNetworks/subnets/serviceAssociationLinks",
+                    "properties": {
+                      "provisioningState": "Succeeded",
+                      "linkedResourceType": "Microsoft.Web/serverfarms",
+                      "link": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                      "enabledForArmDeployments": false,
+                      "allowDelete": false,
+                      "subnetId": "00000000-0000-0000-0000-000000000000",
+                      "locations": []
+                    }
+                  }
+                ],
+                "serviceEndpoints": [
+                  {
+                    "provisioningState": "Succeeded",
+                    "service": "Microsoft.Storage",
+                    "locations": [
+                      "canadacentral",
+                      "canadaeast"
+                    ]
+                  }
+                ],
+                "delegations": [
+                  {
+                    "name": "delegation",
+                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetName'), '/delegations/delegation')]",
+                    "etag": "W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"",
+                    "properties": {
+                      "provisioningState": "Succeeded",
+                      "serviceName": "Microsoft.Web/serverfarms",
+                      "actions": [
+                        "Microsoft.Network/virtualNetworks/subnets/action"
+                      ]
+                    },
+                    "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                  }
+                ],
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled",
+                "natGateway": {
+                  "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/natGateways/', parameters('natGatewayName'))]"
+                }
+              },
+              "type": "Microsoft.Network/virtualNetworks/subnets"
+            }
+          ],
+          "virtualNetworkPeerings": [],
+          "enableDdosProtection": false
         },
-        "sourceVirtualNetwork": {
-            "defaultValue": "",
-            "type": "String"
-        },
-        "virtualNetwork": {
-            "defaultValue": {"name":"vnet","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet","type":"Microsoft.Network/virtualNetworks","location":"canadacentral","properties":{"provisioningState":"Succeeded","resourceGuid":"6edcd27a-7459-455f-948b-b80993dcb19a","addressSpace":{"addressPrefixes":["10.0.0.0/16"]},"privateEndpointVNetPolicies":"Disabled","subnets":[{"name":"subnet","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet","etag":"W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"","properties":{"provisioningState":"Succeeded","addressPrefix":"10.0.0.0/24","serviceAssociationLinks":[{"name":"AppServiceLink","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet/serviceAssociationLinks/AppServiceLink","etag":"W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"","type":"Microsoft.Network/virtualNetworks/subnets/serviceAssociationLinks","properties":{"provisioningState":"Succeeded","linkedResourceType":"Microsoft.Web/serverfarms","link":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Web/serverfarms/testkalyasp","enabledForArmDeployments":false,"allowDelete":false,"subnetId":"00000000-0000-0000-0000-000000000000","locations":[]}}],"serviceEndpoints":[{"provisioningState":"Succeeded","service":"Microsoft.Storage","locations":["canadacentral","canadaeast"]}],"delegations":[{"name":"delegation","id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet/delegations/delegation","etag":"W/\"3fd59064-39dd-4f7a-81f6-f3cfb4364c14\"","properties":{"provisioningState":"Succeeded","serviceName":"Microsoft.Web/serverfarms","actions":["Microsoft.Network/virtualNetworks/subnets/action"]},"type":"Microsoft.Network/virtualNetworks/subnets/delegations"}],"privateEndpointNetworkPolicies":"Disabled","privateLinkServiceNetworkPolicies":"Enabled","natGateway":{"id":"/subscriptions/e60a2559-68d5-4df1-ba9f-6ea5e17e0cfb/resourceGroups/KalyaniRG/providers/Microsoft.Network/natGateways/natgw"}},"type":"Microsoft.Network/virtualNetworks/subnets"}],"virtualNetworkPeerings":[],"enableDdosProtection":false},"apiVersion":"2024-10-01"},
-            "type": "Object"
-        },
-        "virtualNetworkResourceGroup": {
-            "defaultValue": "",
-            "type": "String"
-        },
-        "subnetName": {
+        "apiVersion": "2024-10-01"
+      },
+      "type": "Object"
+    },
+    "virtualNetworkResourceGroup": {
+      "defaultValue": "",
+      "type": "String"
+    },
+    "subnetName": {
       "type": "String"
     },
     "virtualNetworkName": {
@@ -39,16 +116,15 @@
     "userAssignedIdentityName": {
       "type": "String"
     }
-    },
-    "variables": {
-        "sourceVirtualNetworkObject": "[if(empty(parameters('sourceVirtualNetwork')), null(), createObject('id', parameters('sourceVirtualNetwork')))]",
-            "contentShare": "testkaly80af",
+  },
+  "variables": {
+    "sourceVirtualNetworkObject": "[if(empty(parameters('sourceVirtualNetwork')), null(), createObject('id', parameters('sourceVirtualNetwork')))]",
+    "contentShare": "testkaly80af",
     "inboundSubnetDeployment": "inboundSubnetDeployment",
     "connectedServiceSubnetDeployment": "connectedServiceSubnetDeployment"
-
-    },
-    "resources": [
-        {
+  },
+  "resources": [
+    {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2022-03-01",
       "name": "[parameters('logicappName')]",
@@ -207,7 +283,7 @@
             "name": "[parameters('subnetName')]",
             "properties": {
               "addressPrefix": "10.0.0.0/24",
-               "serviceEndpoints": [
+              "serviceEndpoints": [
                 {
                   "service": "Microsoft.Storage"
                 }
@@ -332,81 +408,79 @@
         }
       }
     },
-
-        
-        {
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2024-05-01",
-            "name": "nat-pip",
-            "location": "[parameters('location')]",
-            "sku": {
-                "name": "Standard"
-            },
-            "zones": [],
-            "properties": {
-                "publicIPAllocationMethod": "Static",
-                "publicIpAddressVersion": "IPv4",
-                "ipTags": []
-            },
-            "condition": false
-        },
-        {
-            "type": "Microsoft.Network/publicIPPrefixes",
-            "apiVersion": "2024-05-01",
-            "name": "nat-prefix",
-            "location": "[parameters('location')]",
-            "sku": {
-                "name": "Standard",
-                "tier": "Regional"
-            },
-            "zones": [],
-            "properties": {
-                "prefixLength": 28,
-                "publicIpAddressVersion": "IPv4",
-                "ipTags": []
-            },
-            "condition": false
-        },
-        {
-            "type": "Microsoft.Network/natGateways",
-            "apiVersion": "2024-05-01",
-            "name": "[parameters('natGatewayName')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', 'nat-pip')]",
-                "[resourceId('Microsoft.Network/publicIPPrefixes', 'nat-prefix')]"
-            ],
-            "tags": {},
-            "sku": {
-                "name": "Standard"
-            },
-            "zones": [],
-            "properties": {
-                "publicIPAddresses": [],
-                "publicIPAddressesV6": [],
-                "publicIPPrefixes": [],
-                "publicIPPrefixesV6": [],
-                "idleTimeoutInMinutes": 4,
-                "sourceVirtualNetwork": "[variables('sourceVirtualNetworkObject')]"
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2017-05-10",
-            "name": "VnetAssociation",
-            "dependsOn": [
-                "[concat('Microsoft.Network/natGateways/', parameters('natGatewayName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": "[array(parameters('virtualNetwork'))]"
-                }
-            },
-            "resourceGroup": "[parameters('virtualNetworkResourceGroup')]",
-            "condition": "[not(empty(parameters('virtualNetwork')))]"
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2024-05-01",
+      "name": "nat-pip",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard"
+      },
+      "zones": [],
+      "properties": {
+        "publicIPAllocationMethod": "Static",
+        "publicIpAddressVersion": "IPv4",
+        "ipTags": []
+      },
+      "condition": false
+    },
+    {
+      "type": "Microsoft.Network/publicIPPrefixes",
+      "apiVersion": "2024-05-01",
+      "name": "nat-prefix",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard",
+        "tier": "Regional"
+      },
+      "zones": [],
+      "properties": {
+        "prefixLength": 28,
+        "publicIpAddressVersion": "IPv4",
+        "ipTags": []
+      },
+      "condition": false
+    },
+    {
+      "type": "Microsoft.Network/natGateways",
+      "apiVersion": "2024-05-01",
+      "name": "[parameters('natGatewayName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', 'nat-pip')]",
+        "[resourceId('Microsoft.Network/publicIPPrefixes', 'nat-prefix')]"
+      ],
+      "tags": {},
+      "sku": {
+        "name": "Standard"
+      },
+      "zones": [],
+      "properties": {
+        "publicIPAddresses": [],
+        "publicIPAddressesV6": [],
+        "publicIPPrefixes": [],
+        "publicIPPrefixesV6": [],
+        "idleTimeoutInMinutes": 4,
+        "sourceVirtualNetwork": "[variables('sourceVirtualNetworkObject')]"
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2017-05-10",
+      "name": "VnetAssociation",
+      "dependsOn": [
+        "[concat('Microsoft.Network/natGateways/', parameters('natGatewayName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": "[array(parameters('virtualNetwork'))]"
         }
-    ]
+      },
+      "resourceGroup": "[parameters('virtualNetworkResourceGroup')]",
+      "condition": "[not(empty(parameters('virtualNetwork')))]"
+    }
+  ]
 }
