@@ -2,6 +2,13 @@
   "$schema": "https://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "publicIpAddressName": {
+            "defaultValue": "myPublicIPAddress",
+            "type": "String",
+            "metadata": {
+                "description": "Name of the public IP address resource."
+            }
+        },
     "natGatewayName": {
       "type": "String"
     },
@@ -123,6 +130,30 @@
     "connectedServiceSubnetDeployment": "connectedServiceSubnetDeployment"
   },
   "resources": [
+    {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2025-05-01",
+            "name": "[parameters('publicIPAddresses_public_ip_name')]",
+            "location": "eastus",
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "zones": [
+                "3",
+                "1",
+                "2"
+            ],
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": [],
+                "ddosSettings": {
+                    "protectionMode": "Disabled"
+                }
+            }
+        },
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2022-03-01",
