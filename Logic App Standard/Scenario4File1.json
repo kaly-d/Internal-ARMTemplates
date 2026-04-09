@@ -2,6 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+        "publicIPPrefixes_nat_prefix1_externalid": {
+            "defaultValue": "myPublicIPPrefix",
+            "type": "String"
+        },
+    
     "publicIPAddresses_public_ip_name": {
       "defaultValue": "myPublicIPAddress",
       "type": "String",
@@ -457,7 +462,7 @@
     {
       "type": "Microsoft.Network/publicIPPrefixes",
       "apiVersion": "2024-05-01",
-      "name": "nat-prefix",
+      "name": "[parameters('publicIPPrefixes_nat_prefix1_externalid')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "Standard",
@@ -465,7 +470,7 @@
       },
       "zones": [],
       "properties": {
-        "prefixLength": 28,
+        "prefixLength": 29,
         "publicIpAddressVersion": "IPv4",
         "ipTags": []
       },
@@ -492,7 +497,11 @@
           }
         ],
         "publicIPAddressesV6": [],
-        "publicIPPrefixes": [],
+        "publicIPPrefixes": [
+          {
+            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPPrefixes/', parameters('publicIPAddresses_public_ip_name'))]"
+          }          
+        ],
         "publicIPPrefixesV6": [],
         "idleTimeoutInMinutes": 4,
         "sourceVirtualNetwork": "[variables('sourceVirtualNetworkObject')]"
