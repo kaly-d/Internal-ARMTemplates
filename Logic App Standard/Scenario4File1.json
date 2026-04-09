@@ -483,7 +483,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_public_ip_name'))]",
-        "[resourceId('Microsoft.Network/publicIPPrefixes', 'nat-prefix')]"
+        "[resourceId('Microsoft.Network/publicIPPrefixes',  parameters('publicIPPrefixes_nat_prefix1_externalid'))]"
       ],
       "tags": {},
       "sku": {
