@@ -444,22 +444,6 @@
       }
     },
     {
-      "type": "Microsoft.Network/publicIPAddresses",
-      "apiVersion": "2024-05-01",
-      "name": "nat-pip",
-      "location": "[parameters('location')]",
-      "sku": {
-        "name": "Standard"
-      },
-      "zones": [],
-      "properties": {
-        "publicIPAllocationMethod": "Static",
-        "publicIpAddressVersion": "IPv4",
-        "ipTags": []
-      },
-      "condition": false
-    },
-    {
       "type": "Microsoft.Network/publicipprefixes",
       "apiVersion": "2024-05-01",
       "name": "[parameters('publicIPPrefixes_nat_prefix1_externalid')]",
@@ -473,8 +457,7 @@
         "prefixLength": 29,
         "publicIpAddressVersion": "IPv4",
         "ipTags": []
-      },
-      "condition": false
+      }
     },
     {
       "type": "Microsoft.Network/natGateways",
