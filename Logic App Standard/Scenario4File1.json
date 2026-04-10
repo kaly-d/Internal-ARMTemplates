@@ -499,7 +499,7 @@
         "publicIPAddressesV6": [],
         "publicIPPrefixes": [
           {
-            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPPrefixes/', parameters('publicIPAddresses_public_ip_name'))]"
+            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPPrefixes/', parameters('publicIPPrefixes_nat_prefix1_externalid'))]"
           }          
         ],
         "publicIPPrefixesV6": [],
