@@ -196,7 +196,7 @@
             },
             {
               "name": "Sftp_username",
-              "value": "[concat(parameters('sftpStorageAccountName'), parameters('homeDirectory'), parameters('userName'))]"
+              "value": "[concat(parameters('sftpStorageAccountName'), '.', parameters('homeDirectory'), '.', parameters('userName'))]"
             }
           ],
           "cors": {},
