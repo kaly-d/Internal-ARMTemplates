@@ -17,7 +17,7 @@ The below CLI commands will deploy only add (or replace workflows with the same 
 3. Click on _Manage files_ > _Upload_ and select the zip file you just downloaded
 4. Run the following commands and replace the bolded fields:
 
-az account set --subscription **<name or id>**
+az account set --subscription **Subscription Name or ID**
 
 az webapp deploy --resource-group **ResourceGroupName** --name **LogicAppName** --src-path **WorkflowsN**.zip --type=zip --clean false
 
