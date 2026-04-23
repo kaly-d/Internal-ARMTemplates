@@ -181,6 +181,22 @@
             {
               "name": "LOGIC_APPS_POWERSHELL_VERSION",
               "value": 7.4
+            },
+            {
+              "name": "Sftp_disableConnectionCache",
+              "value": "true"
+            },
+            {
+              "name": "Sftp_password",
+              "value": ""
+            },
+            {
+              "name": "Sftp_sshHostAddress",
+              "value": "[concat(parameters('sftpStorageAccountName'), '.blob.core.windows.net')]"
+            },
+            {
+              "name": "Sftp_username",
+              "value": "[concat(parameters('sftpStorageAccountName'), parameters('homeDirectory'), parameters('userName'))]"
             }
           ],
           "cors": {},
