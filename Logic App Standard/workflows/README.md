@@ -1,6 +1,13 @@
-This is a Workflow Zip Repository, where multiple wwwroot zip folders, containing varying number of workflow files. Useful if you want a fixed set of workflows deployed quickly to your app. 
+This is a Workflow Zip Repository, with multiple zip folders, containing pre-templatized workflow artifacts zip files. This mimics the wwwroot directory in your Logic App Standard project's directory: **site/wwwroot**. 
 
-All the workflows are identical and have just one trigger (When an HTTP request is received), with no actions.
+**Type of Zip files**
+1. Workflow**N**.zip
+All the workflows are identical and have just one trigger (When an HTTP request is received), with no actions. The N is for whichever number of workflows you want to deploy quickly.
+
+2. Scenario**N**File**N**.zip
+This corresponds to the workflows required to complete the end-to-end set up for the scenario-based ARM templates. 
+
+---
 
 The below CLI commands will deploy only add (or replace workflows with the same name) and touch no other files. So host.json, parameters.json, connections.json, or any other workflows or artifacts in your site's wwwroot repository will remain as is. This is controlled by the _--clean false_ parameter. 
 
