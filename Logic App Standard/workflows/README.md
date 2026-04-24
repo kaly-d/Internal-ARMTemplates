@@ -12,8 +12,8 @@ This corresponds to the workflows required to complete the end-to-end set up for
 
 **Instructions**
 
-1. Download the zip file with the desired number of workflows
-2. On the Portal, open the Cloud Shell
+1. Download the appropriate zip file for your scenario
+2. On the Azure Portal, open the Cloud Shell
 3. Click on _Manage files_ > _Upload_ and select the zip file you just downloaded
 4. Run the following commands and replace the bolded fields:
 
