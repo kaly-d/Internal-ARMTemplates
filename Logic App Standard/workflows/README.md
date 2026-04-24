@@ -19,4 +19,4 @@ This corresponds to the workflows required to complete the end-to-end set up for
 
 _az account set --subscription **Subscription Name or ID**_
 
-_az webapp deploy --resource-group **ResourceGroupName** --name **LogicAppName** --src-path **WorkflowsN**.zip --type=zip --clean false_
+_az webapp deploy --resource-group **ResourceGroupName** --name **LogicAppName** --src-path **FileName**.zip --type=zip --clean false_
