@@ -52,7 +52,7 @@
             "privateLinkServiceConnections": [
                 {
                     "name": "[concat(parameters('privateEndpointName'), parameters('guid'))]",
-                    "id": "[concat(resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpointName')), concat('/privateLinkServiceConnections/', parameters('privateEndpointName'), parameters('guid'))]",
+                    "id": "[concat(resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpointName')), concat('/privateLinkServiceConnections/', parameters('privateEndpointName'), parameters('guid')))]",
                     "properties": {
                         "privateLinkServiceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/', parameters('serviceBus-NamespaceName'))]",
                         "groupIds": [
