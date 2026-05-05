@@ -16,6 +16,4 @@ What this does/deploys:
 
 In the **basePath** parameter, replace the basePath with the value you stored from Step 1.
 
-**Step 3:** Test the Logic App by running the workflow and see if the API receives the 2 requests.
-
 ***
