@@ -84,9 +84,9 @@
                                     "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "hello": {
+                                        "string": {
                                         "type": "string",
-                                        "description": "hello"
+                                        "description": "enter any string"
                                         }
                                     }
                                     }
@@ -165,8 +165,7 @@
                         }
                     },
                     "actions": {
-                        "Invoke_the_Webhook.site_API": {
-                            "runAfter": {},
+                        "Get_Invoke_API": {
                             "type": "ApiConnection",
                             "inputs": {
                                 "host": {
@@ -175,7 +174,28 @@
                                     }
                                 },
                                 "method": "get",
-                                "path": "/"
+                                "path": "[parameters('basePath')]"
+                            },
+                            "runAfter": {}
+                        },
+                            "Post_Invoke_API": {
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['custom-connector']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "body": {
+                                    "string": "hello world"
+                                },
+                                "path": "[parameters('basePath')]"
+                            },
+                            "runAfter": {
+                                "Get_Invoke_API": [
+                                    "SUCCEEDED"
+                                ]
                             }
                         }
                     },
