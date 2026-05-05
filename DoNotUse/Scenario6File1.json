@@ -22,7 +22,10 @@
     "resources": [
         {
             "apiVersion": "2016-10-01",
-            "name": "[parameters('logicAppName')]",
+            "name": "[parameters('logicAppName')]",            
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/connections', parameters('customConnectorName'))]"
+            ],
             "type": "Microsoft.Logic/workflows",
             "location": "[parameters('location')]",
             "tags": {},
@@ -162,7 +165,10 @@
             }
         },
         {
-            "type": "Microsoft.web/connections",
+            "type": "Microsoft.web/connections",            
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/customApis', parameters('customConnectorName'))]"
+            ],
             "apiVersion": "2018-07-01-preview",
             "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Web/connections/', parameters('customConnectorName'))]",
             "name": "[parameters('customConnectorName')]",
